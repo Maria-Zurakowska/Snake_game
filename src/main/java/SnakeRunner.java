@@ -17,7 +17,7 @@ public class SnakeRunner extends Application {
 
     private Image imageBack = new Image("file:src/main/resources/Snake-skin-texture-01-HD-Images-41083.jpg");
 
-    //kod niżej jest do javyfx
+    //javafx code
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -79,9 +79,9 @@ public class SnakeRunner extends Application {
 
     public static void main(String[] args) {
 
-        launch(args); //przejscie do javy fx
+        launch(args);
 
-        //kod niżej jest do testowania w konsoli
+        //testing in console
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
 

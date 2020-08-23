@@ -3,20 +3,19 @@ import java.util.List;
 
 public class Snake {
 
-    // zmienna, która przechowuje kierunek (twarz weza)//kierunek startowy węża
     String direction = "RIGHT";
 
     public Snake(Coord coord) {
-        tail.add(coord); //kolekcja elementow weza
+        tail.add(coord);
     }
 
-    // lista, która przechowuje elementy ogona
+
     List<Coord> tail = new ArrayList<>();
 
     public void generateTail() {
         Coord coord = tail.get(0);
         for (int i = 0; i < 3; i++) { //3 bo tak
-            tail.add(new Coord(coord.getX() - (i + 1), coord.getY())); // pierwsze to rzad, dodaje za glowa
+            tail.add(new Coord(coord.getX() - (i + 1), coord.getY()));
         }
     }
 
@@ -24,8 +23,7 @@ public class Snake {
         return tail;
     }
 
-    // metoda, aby wąż się ruszał// ruch w kierunku zgodnym z aktualnym kierunkiem// WYKONUJE RUCH O 1 KLATKĘ
-    public void move(List<Apple> apples, Board board) { //board - sprawdzamy czy dotarlismy do krawedzi
+    public void move(List<Apple> apples, Board board) {
 
         final Coord head = transformHead(tail.get(0));
         try {
@@ -40,7 +38,6 @@ public class Snake {
 
         try {
             if (isTail(head.getX(), head.getY())) {
-
                 throw new IllegalArgumentException("Ssssss");
             }
         } catch (IllegalArgumentException e) {
@@ -53,7 +50,7 @@ public class Snake {
         } else {
             Apple apple = apples.stream()
                     .filter(a -> a.getX() == head.getX() && a.getY() == head.getY())
-                    .findAny()// zwraca znaleziony obiekt albo null //Optional
+                    .findAny()
                     .orElse(null);
             apples.remove(apple);
         }
@@ -70,7 +67,7 @@ public class Snake {
         return result;
     }
 
-    private boolean isApple(List<Apple> apples, int x, int y) { //SPRAWDZA, CZY WJECHALIŚMY NA JABŁKO, WTEDY OGON SIĘ NIE USUWA TYLKO WĄŻ SIĘ WYDŁUŻA O 1 KRATKĘ.
+    private boolean isApple(List<Apple> apples, int x, int y) {
         boolean result = false;
         for (Apple apple : apples) {
             if (apple.getX() == x && apple.getY() == y) {
@@ -80,7 +77,7 @@ public class Snake {
         return result;
     }
 
-    private Coord transformHead(Coord head) { //DOKLEJA JEDNĄ NOWĄ X W MIEJSCU ZGODNYM Z KIERUNKIEM - DIRECTION
+    private Coord transformHead(Coord head) {
         Coord newHead = new Coord(head.getX(), head.getY());
         switch (direction) {
             case "UP":

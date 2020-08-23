@@ -4,11 +4,10 @@ import java.util.Optional;
 
 public class Board {
 
-    // wymiary mojej planszy
     private int boardHeight = 40;
     private int boardLength = 40;
-    private Snake snake; // przechowuje info o ulozeniu weza (kratki)
-    private List<Apple> apples = new ArrayList<>(); //kolekcja jabłek//wylosuje gdzie maja byc//co x cykli ruchu//przechpowuje wszystkie jablka na planszy
+    private Snake snake;
+    private List<Apple> apples = new ArrayList<>();
 
     public Board(int boardHeight, int boardLength) {
         this.boardHeight = boardHeight;
@@ -43,7 +42,7 @@ public class Board {
         return apples;
     }
 
-    @Override //do testowania w konsoli (uzycie), bo finalnie niepotrzebne
+    @Override
     public String toString() {
         String s = genMinus(boardLength + 2) + "\n";
         for (int row = 0; row < boardHeight; row++) {
@@ -57,7 +56,7 @@ public class Board {
         return s;
     }
 
-    public String getSymbol(int col, int row) { // do testowania w konsoli
+    public String getSymbol(int col, int row) {
 
         Optional<String> sign = snake.tail.stream()
                 .filter(c -> c.getX() == col && c.getY() == row) //
@@ -69,14 +68,14 @@ public class Board {
                 .filter(a -> a.getX() == col && a.getY() == row)
                 .map(a -> "O")
                 .findAny()
-                .orElse(s); // Return the value if present, otherwise return (what's in brackets)
+                .orElse(s);
         return s;
     }
 
-    private String genMinus(int boardLength) { // do testowania w konsoli
-        String s = ""; //tworze pustego Stringa
-        while (s.length() < boardLength) { //s.length() zmienia się z każdym nowym dodanym znakiem
-            s += "-";                    // "" daje s.length() równe 0, "-" daje 1, "--" daje 2
+    private String genMinus(int boardLength) {
+        String s = "";
+        while (s.length() < boardLength) {
+            s += "-";
         }
         return s;
     }

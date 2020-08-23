@@ -1,5 +1,5 @@
 public class Coord {
-    //klasa przechowująca współrzędne
+
     private int x;
     private int y;
 
